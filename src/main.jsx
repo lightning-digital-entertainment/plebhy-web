@@ -5,11 +5,13 @@ import Root from "./routes/Root";
 import "./index.css";
 import Home from "./features/home/routes/Home";
 import GetStarted from "./features/get-started/routes/GetStarted";
+import Error from "./routes/Error";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Root />,
+        errorElement: <Error/>,
         children: [
             {
                 path: "/",
