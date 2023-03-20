@@ -6,7 +6,7 @@ function GetStarted() {
     return (
         <div className="font-montserrat justify-center text-center md:w-1/2">
             <div className="bg-zinc-800 p-4 m-4 rounded-lg">
-                <h2 className="text-lg font-medium text-accent">
+                <h2 className="text-lg font-medium text-accent font-bungee">
                     Add your .gif to the PLEBHY library
                 </h2>
                 <p>
@@ -24,7 +24,7 @@ function GetStarted() {
                 </p>
             </div>
             <div className="bg-zinc-800 p-4 m-4 rounded-lg">
-                <h2 className="text-lg font-medium text-accent">
+                <h2 className="text-lg font-medium text-accent font-bungee">
                     Use a .gif from the PLEBHY library
                 </h2>
                 <p>

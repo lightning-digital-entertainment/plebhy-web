@@ -10,7 +10,7 @@ function Navbar() {
                     navigate("/");
                 }}
             >
-                <h1 className="text-white text-7xl mx-2 my-2 font-black text-center hover:text-zinc-500">
+                <h1 className="text-white text-7xl mx-2 my-2 font-black text-center hover:text-zinc-500 font-bungee">
                     PLEBHY
                 </h1>
             </div>

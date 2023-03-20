@@ -10,7 +10,8 @@ module.exports = {
         'accent': '#faa200'
       },
       fontFamily: {
-        'montserrat' : ['Montserrat', 'sans-serif']
+        'montserrat' : ['Montserrat', 'sans-serif'],
+        'bungee' : ['Bungee', 'cursive']
       }
     },
   },
