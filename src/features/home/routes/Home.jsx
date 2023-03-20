@@ -7,7 +7,7 @@ function Home() {
     const navigate = useNavigate();
     return (
         <div className="flex justify-center flex-col mx-2 my-2">
-            <h2 className="text-lg font-montserrat text-center">
+            <h2 className="text-lg font-montserrat font-medium text-center">
                 Decentralized GIF library built on nostr
             </h2>
             <div className="flex justify-center my-8">

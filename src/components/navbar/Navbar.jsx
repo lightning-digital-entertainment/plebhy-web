@@ -35,6 +35,16 @@ function Navbar() {
                 >
                     Get Started
                 </NavLink>
+                <NavLink
+                    to="/library"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "mx-4 text-lg text-zinc-400 hover:text-zinc-500"
+                            : "mx-4 text-lg hover:text-zinc-500"
+                    }
+                >
+                    Library
+                </NavLink>
             </ul>
         </div>
     );
