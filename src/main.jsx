@@ -7,8 +7,8 @@ import './index.css';
 import Home from './features/home/routes/Home';
 import GetStarted from './features/get-started/routes/GetStarted';
 import Error from './routes/Error';
-import Library from './features/library/routes/Library';
 import { store } from './store';
+import { GifPage, Library } from './features/library/routes';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +22,7 @@ const router = createBrowserRouter([
       },
       { path: '/get-started', element: <GetStarted /> },
       { path: '/library', element: <Library /> },
+      { path: '/library/:gifId', element: <GifPage /> },
     ],
   },
 ]);

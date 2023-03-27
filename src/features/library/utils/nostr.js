@@ -7,7 +7,7 @@ export const getKind0 = async (pk) => {
   let returnEvent;
   await new Promise((resolve) => {
     const sub = pool.sub(
-      ['wss://relay.damus.io', 'wss://nos.lol', 'wss://nostr.mom'],
+      ['wss://relay.damus.io', 'wss://nos.lol', 'wss://nostr.mom', 'wss://nostr1.current.fyi', 'wss://relay.current.fyi'],
       [
         {
           authors: [pk],
@@ -16,7 +16,6 @@ export const getKind0 = async (pk) => {
       ],
       undefined,
     );
-    console.log(pool);
     sub.on('event', (event) => {
       receivedEvents.push(event);
     });
