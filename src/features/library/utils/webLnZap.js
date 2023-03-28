@@ -4,10 +4,9 @@ import createZapRequest from './zaps';
 
 const textDecoder = new TextDecoder();
 
-const webLnZap = async (kind0Event, eTag, pTag, amount) => {
+const webLnZap = async (userData, eTag, pTag, amount, memo) => {
   try {
     let dest;
-    const userData = JSON.parse(kind0Event.content);
     const { lud06, lud16 } = userData;
     if (!lud06 && !lud16) {
       throw new Error('User does not have a Lightning Address or LNURL...');
@@ -20,6 +19,7 @@ const webLnZap = async (kind0Event, eTag, pTag, amount) => {
       const [user, domain] = lud16.split('@');
       dest = `https://${domain}/.well-known/lnurlp/${user}`;
     }
+    console.log(dest);
     const res = await fetch(dest);
     const {
       minSendable,
@@ -28,19 +28,23 @@ const webLnZap = async (kind0Event, eTag, pTag, amount) => {
       nostrPubkey,
       callback,
     } = await res.json();
-    if (amount < minSendable || amount > maxSendable) {
+    if (amount * 1000 < minSendable || amount * 1000 > maxSendable) {
       throw new Error('Amount is out of bounds');
     }
     if (!allowsNostr || !nostrPubkey) {
       throw new Error('User does not support Zaps...');
     }
-    const zapEvent = createZapRequest(eTag, pTag, amount);
+    const zapEvent = await createZapRequest(eTag, pTag, amount, memo);
+    console.log(zapEvent);
     const cbRes = await fetch(`${callback}?amount=${amount * 1000}&nostr=${encodeURIComponent(JSON.stringify(zapEvent))}`);
     const cbData = await cbRes.json();
-    debugLog(cbData);
+    console.log(cbData);
+    const { pr } = cbData;
+    return pr;
   } catch (e) {
     debugLog(e);
   }
+  return null;
 };
 
 export default webLnZap;

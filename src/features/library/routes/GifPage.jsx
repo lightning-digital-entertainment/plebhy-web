@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Button, LoadingComponent } from '../../../components';
+import ZapModal from '../../../components/UI/ZapModal';
 import { encodePubkey } from '../../../utils';
 import { useUser } from '../hooks';
 
 function GifPage() {
   const [gifData, setGifData] = useState();
+  const [modalShown, setModalShown] = useState(false);
   const { gifId } = useParams();
   const user = useUser(gifData?.ptag);
   useEffect(() => {
@@ -20,6 +22,10 @@ function GifPage() {
   const copyHandler = () => {
     navigator.clipboard.writeText(decodeURIComponent(gifData?.images.original.url));
   };
+
+  const closeHandler = () => {
+    setModalShown(false);
+  };
   return (
     <div className="w-full">
       <div className="py-2 px-8 bg-zinc-800 mb-4 font-montserrat font-bold">
@@ -31,7 +37,12 @@ function GifPage() {
             <img src={decodeURIComponent(gifData?.images.original.url)} className="rounded-xl" alt="Plebhy GIF" />
             <div className="flex flex-row justify-evenly mt-4">
               <Button title="Copy URL" onClick={copyHandler} />
-              <Button title="Zap (Coming Soon)" />
+              <Button
+                title="Zap (Coming Soon)"
+                onClick={() => {
+                  setModalShown(true);
+                }}
+              />
             </div>
           </div>
           {user ? (
@@ -46,12 +57,15 @@ function GifPage() {
               </p>
             </div>
           ) : (
-            <LoadingComponent />
+            <div className="flex w-full h-96">
+              <LoadingComponent extraStyling="mx-12 rounded-xl" />
+            </div>
           )}
         </div>
       ) : (
         <p>Loading...</p>
       )}
+      {modalShown ? <ZapModal onClose={closeHandler} user={user} gif={gifData} /> : undefined}
     </div>
   );
 }

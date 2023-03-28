@@ -4,7 +4,7 @@ import GifContainer from '../components/GifContainer';
 function Library() {
   const [gifs, setGifs] = useState();
   const getGifs = async () => {
-    const response = await fetch('https://current.fyi/plebhy?limit=50&search=trending');
+    const response = await fetch('https://current.fyi/plebhy?limit=25&search=trending');
     const data = await response.json();
     const parsedGifs = data.data.map((gif) => ({
       pTag: gif.ptag,
