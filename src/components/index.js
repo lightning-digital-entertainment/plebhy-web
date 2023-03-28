@@ -1,1 +1,2 @@
-export * from './UI'
+export * from './UI';
+export { default as LoadingComponent } from './LoadingComponent';

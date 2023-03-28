@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Button } from '../../../components';
+import { Button, LoadingComponent } from '../../../components';
 import { encodePubkey } from '../../../utils';
 import { useUser } from '../hooks';
 
@@ -40,10 +40,13 @@ function GifPage() {
               <img src={user.userData.picture} className="w-1/5 rounded-full flex" alt="Creator Profileimage" />
               <h4 className="text-lg font-bold">{user.userData.name}</h4>
               <p className="">{user.userData.about}</p>
-              <p className="text-xs text-accent">{encodePubkey(user.pubkey).slice(0, 32)}</p>
+              <p className="text-xs text-accent">
+                {encodePubkey(user.pubkey).slice(0, 32)}
+                ...
+              </p>
             </div>
           ) : (
-            <p>Loading</p>
+            <LoadingComponent />
           )}
         </div>
       ) : (
