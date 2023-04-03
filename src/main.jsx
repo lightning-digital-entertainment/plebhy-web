@@ -8,8 +8,10 @@ import Home from './features/home/routes/Home';
 import GetStarted from './features/get-started/routes/GetStarted';
 import Error from './routes/Error';
 import { store } from './store';
-import { GifPage, Library } from './features/library/routes';
-import { ApiPage } from './features/api';
+import { Library } from './features/library/routes';
+
+const GifPage = React.lazy(() => import('./features/library/routes/GifPage'));
+const ApiPage = React.lazy(() => import('./features/api/routes/ApiPage'));
 
 const router = createBrowserRouter([
   {
