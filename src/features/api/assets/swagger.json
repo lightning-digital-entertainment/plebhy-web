@@ -12,6 +12,12 @@
     },
     "version": "1.0.0"
   },
+  "servers": [
+    {
+      "url": "https://getcurrent.io",
+      "description": "PLEBHY API provided by getcurrent.io"
+    }
+  ],
   "paths": {
     "/plebhy": {
       "get": {
