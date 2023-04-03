@@ -1,2 +1,2 @@
 export { default as debugLog } from './debugLog';
-export * from './keys';
+export * from './nip19';

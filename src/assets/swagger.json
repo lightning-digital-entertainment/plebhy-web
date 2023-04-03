@@ -1,0 +1,186 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PLEBHY API",
+    "description": "This is a simple API to the PLEBHY media index.",
+    "contact": {
+      "email": "info@getcurrent.io"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/plebhy": {
+      "get": {
+        "summary": "searches the media index",
+        "description": "Refine your search by passing the appropriate parameters",
+        "operationId": "search",
+        "parameters": [
+          {
+            "name": "apikey",
+            "in": "query",
+            "description": "pass your API key",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "term that you want to search for",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "type of returned items (gif | sticker). Defaults to gif",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limits the amount of returned items",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "offsets the returned results",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "plebhy items matching criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Plebhy"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Plebhy": {
+        "required": ["id", "name", "releaseDate"],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "gif"
+          },
+          "sid": {
+            "type": "string",
+            "format": "UUID",
+            "example": "b9bd2135c1db99af..."
+          },
+          "ptag": {
+            "type": "string",
+            "format": "pubkey",
+            "example": "e4b67f9f7c0a1cce1c24ca9196f8e1446fcce17fdef5d5eb46a3929433ea4d91"
+          },
+          "etag": {
+            "type": "string",
+            "format": "eventId",
+            "example": "a66c8a5cedb5c8df07e0df9497b93ac2d338ba070556428305066c37c4a873b2"
+          },
+          "name": {
+            "type": "string",
+            "example": "Mickey"
+          },
+          "title": {
+            "type": "string",
+            "format": "URL",
+            "example": "https://nostr.build/i/n..."
+          },
+          "images": {
+            "type": "object",
+            "properties": {
+              "original": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "encoded URL",
+                    "example": "https%3A%2F%2Fi.current.fyi%2FMickey%2FXmsdiIwckKkE_400.jpg"
+                  },
+                  "size": {
+                    "type": "integer",
+                    "example": 21205
+                  },
+                  "width": {
+                    "type": "integer",
+                    "example": 400
+                  },
+                  "height": {
+                    "type": "integer",
+                    "example": 200
+                  }
+                }
+              },
+              "downsized": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "encoded URL",
+                    "example": "https%3A%2F%2Fi.current.fyi%2FMickey%2FXmsdiIwckKkE_100.jpg"
+                  },
+                  "size": {
+                    "type": "integer",
+                    "example": 5097
+                  },
+                  "width": {
+                    "type": "integer",
+                    "example": 100
+                  },
+                  "height": {
+                    "type": "integer",
+                    "example": 50
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

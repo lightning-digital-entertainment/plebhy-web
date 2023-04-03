@@ -9,6 +9,7 @@ import GetStarted from './features/get-started/routes/GetStarted';
 import Error from './routes/Error';
 import { store } from './store';
 import { GifPage, Library } from './features/library/routes';
+import { ApiPage } from './features/api';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: '/get-started', element: <GetStarted /> },
       { path: '/library', element: <Library /> },
       { path: '/library/:gifId', element: <GifPage /> },
+      { path: '/api', element: <ApiPage /> },
     ],
   },
 ]);
