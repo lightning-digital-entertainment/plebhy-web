@@ -33,7 +33,8 @@
             "explode": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "default": "8745CC26F4EBDFF4615CA8BF71DA5"
           },
           {
             "name": "search",
@@ -100,10 +101,75 @@
         }
       }
     },
+    "/plebhy/get/{id}": {
+      "get": {
+        "summary": "get a single item by its id",
+        "description": "Returns a single PLEBHY item",
+        "parameters": [
+          {
+            "name": "apikey",
+            "in": "query",
+            "description": "pass your API key",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "default": "8745CC26F4EBDFF4615CA8BF71DA5"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "sid of desired PLEBHY item",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Single PLEBHY item",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Plebhy"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/plebhyuser": {
       "get": {
         "summary": "find all plebhy creators",
         "description": "Look up all pubkeys of PLEBHY creators",
+        "parameters": [
+          {
+            "name": "apikey",
+            "in": "query",
+            "description": "pass your API key",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "default": "8745CC26F4EBDFF4615CA8BF71DA5"
+          }
+        ],
         "responses": {
           "200": {
             "description": "all plebhy creators",
