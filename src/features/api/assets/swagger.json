@@ -7,8 +7,7 @@
       "email": "info@getcurrent.io"
     },
     "license": {
-      "name": "MIT",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      "name": "MIT"
     },
     "version": "1.0.0"
   },
@@ -100,6 +99,32 @@
           }
         }
       }
+    },
+    "/plebhyuser": {
+      "get": {
+        "summary": "find all plebhy creators",
+        "description": "Look up all pubkeys of PLEBHY creators",
+        "responses": {
+          "200": {
+            "description": "all plebhy creators",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Plebhy"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -184,6 +209,16 @@
                 }
               }
             }
+          }
+        }
+      },
+      "PlebhyCreator": {
+        "required": ["id", "name", "releaseDate"],
+        "type": "object",
+        "properties": {
+          "ptag": {
+            "type": "string",
+            "example": "7bf7db83f73228f5df..."
           }
         }
       }
