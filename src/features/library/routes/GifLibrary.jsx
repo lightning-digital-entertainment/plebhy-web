@@ -18,10 +18,9 @@ function Library() {
     getGifs();
   }, []);
   return (
-    <div className="font-montserrat flex flex-col">
-      <h2 className="text-lg font-medium ">PLEBHY Library</h2>
+    <div className="font-montserrat flex flex-col items-center">
       {gifs ? (
-        <div className="grid gap-1 grid-cols-3 grid-flow-row">
+        <div className="grid gap-1 grid-cols-3 w-fit">
           {gifs.map((gif) => (
             <GifContainer gifUrl={gif.thumbnail} key={gif.id} pTag={gif.pTag} id={gif.id} />
           ))}

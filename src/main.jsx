@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -8,10 +9,8 @@ import Home from './features/home/routes/Home';
 import GetStarted from './features/get-started/routes/GetStarted';
 import Error from './routes/Error';
 import { store } from './store';
-import { Library } from './features/library/routes';
-
-const GifPage = React.lazy(() => import('./features/library/routes/GifPage'));
-const ApiPage = React.lazy(() => import('./features/api/routes/ApiPage'));
+import { GifLibrary, GifPage, LibraryRoot, StickerLibrary } from './features/library/routes';
+import { ApiPage } from './features/api';
 
 const router = createBrowserRouter([
   {
@@ -24,8 +23,15 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       { path: '/get-started', element: <GetStarted /> },
-      { path: '/library', element: <Library /> },
-      { path: '/library/:gifId', element: <GifPage /> },
+      {
+        path: 'library',
+        element: <LibraryRoot />,
+        children: [
+          { path: 'gif', element: <GifLibrary /> },
+          { path: 'sticker', element: <StickerLibrary /> },
+        ],
+      },
+      { path: 'id/:gifId', element: <GifPage /> },
       { path: '/api', element: <ApiPage /> },
     ],
   },

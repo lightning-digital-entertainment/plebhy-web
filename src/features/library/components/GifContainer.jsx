@@ -7,7 +7,7 @@ function GifContainer({ gifUrl, pTag, id }) {
   return (
     <button
       onClick={() => {
-        navigate(`/library/${id}`, { state: { pk: pTag } });
+        navigate(`/id/${id}`, { state: { pk: pTag }, replace: true });
       }}
       type="button"
       className="flex"
