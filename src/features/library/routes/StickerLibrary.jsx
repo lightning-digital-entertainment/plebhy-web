@@ -6,8 +6,8 @@ function StickerLibrary() {
   const [gifs, setGifs] = useState([]);
   const [page, setPage] = useState(0);
   const getGifs = async () => {
-    const offset = page ? `&offset=${page * 50}` : '';
-    const response = await fetch(`https://current.fyi/plebhy?limit=50&type=sticker${offset}&apikey=${import.meta.env.VITE_API_KEY}`);
+    const offset = page ? `&offset=${page * 25}` : '';
+    const response = await fetch(`https://current.fyi/plebhy?limit=25&type=sticker${offset}&apikey=${import.meta.env.VITE_API_KEY}`);
     const data = await response.json();
     const parsedGifs = data.data.map((gif) => ({
       pTag: gif.ptag,
