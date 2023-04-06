@@ -17,7 +17,7 @@ function Navbar() {
         <NavLink to="/get-started" className={({ isActive }) => (isActive ? 'mx-4 text-lg text-accent hover:text-zinc-500' : 'mx-4 text-lg hover:text-zinc-500')}>
           Get Started
         </NavLink>
-        <NavLink to="/library" className={({ isActive }) => (isActive ? 'mx-4 text-lg text-accent hover:text-zinc-500' : 'mx-4 text-lg hover:text-zinc-500')}>
+        <NavLink to="/library/gif" className={({ isActive }) => (isActive ? 'mx-4 text-lg text-accent hover:text-zinc-500' : 'mx-4 text-lg hover:text-zinc-500')}>
           Library
         </NavLink>
         <NavLink to="/api" className={({ isActive }) => (isActive ? 'mx-4 text-lg text-accent hover:text-zinc-500' : 'mx-4 text-lg hover:text-zinc-500')}>
